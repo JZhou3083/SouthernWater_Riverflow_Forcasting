@@ -1,6 +1,6 @@
 # SouthernWater_Riverflow_Forecasting
 ## Introduction
-Hands off Flow (HOF) if a measurement of the river flow that triggers warning of when water supply company may be breaching their licence condition for water abstraction on the river, 
+Hands off Flow (HOF) is a measurement of the river flow that triggers warning of when water supply company may be breaching their licence condition for water abstraction on the river, 
 for the preservation of plants and wildlife. In the past eight months, Southampton has experienced the driest months in 131 years due to an extreme shortage of rainfall. The below graph, from the website of Southern Water,
 shows the recent flow data of River Test, one of the two major river supplying water consuming of Southampton during 2022: 
 
