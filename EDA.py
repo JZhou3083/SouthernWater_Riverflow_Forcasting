@@ -42,7 +42,7 @@ result['broadlands'] = broadlands_comp['value'].astype(float)
 
 
 # System identification: from broadland to the sum of the divisions
-r = result[:77]
+r = result[310:]
 r.fillna(method="ffill",inplace=True)
 r.plot(y=['sum','broadlands'])
 SI = math.sqrt(mean_squared_error(r['sum'],r['broadlands']))/mean(r['sum'])*100
@@ -59,11 +59,11 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 result.to_csv(f"{data_path}/result.csv", index=False)
 
 
-pred = pd.read_csv(os.path.join(data_path,"pred.csv"))
+# pred = pd.read_csv(os.path.join(data_path,"pred.csv"))
 
 # print(pred[310:])
 # print(r['sum'])
-SI = math.sqrt(mean_squared_error(r['sum'],pred[:77]))/mean(r['sum'])*100
-r2 = r2_score(r['sum'],pred[:77])
-print(f"{SI:.2f}%",r2)
+# SI = math.sqrt(mean_squared_error(r['sum'],pred[:77]))/mean(r['sum'])*100
+# r2 = r2_score(r['sum'],pred[:77])
+# print(f"{SI:.2f}%",r2)
 

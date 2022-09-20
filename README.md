@@ -16,9 +16,9 @@ on the river flow. The main objectives of the project include:
 3. Validate the model and automate the data extraction and prediction using Requests library and APIs
 4. Make an APP for better UI
 
-## Data collection
+## Data preparation
 ### Flow data
-Data collection is the most time-consuming task so far as I am aiming to collect 20 years of daily flow data for the modelling. 
+Collecting the data is a time-consuming task so far, as hydrology data often suffers discontinuity, and I aim to collect 20 years of data.
 According to [the draught permit application](https://www.southernwater.co.uk/media/7278/11-description_of_the_proposal-1.pdf) by Southern Water(section 2.3.3), the HOF of River Test is measured by summing the readings of the following gauge stations: 
 1. River Great Test at Testwood
 2. River Blackwater at Ower
@@ -31,10 +31,18 @@ The schematic of the hydrology of the River Test downstream of Romsey, adopted f
 
 The fact that HOF calculation is using Testwood GS combined with Ower GS station over Testwood Bridge GS is because Testwood Bridge GS does not exist yet. The interfacing module to Environment Agency 
 database is class __ImportFromEA__ in __EnvironAgency.py__. However, the Testwood GS station of EA has a severe data missing, only containing data from Apr 2018 until Aug 2021 and in low quality (unchecked estimation). 
-In order to fill the missing data, I used the data of [National River Flow Archive] (https://nrfa.ceh.ac.uk/data/search), who has Broadlands GS station that locates at the upstream of Testwood GS, Conagar Bridge GS and Test Back GS stations(look at the hydrology map above).
-Hence, it is possible to estimate the sum of the stations' missing data from the readings of Broadlands GS station, which is a system identification task in theory. To validate my idea, I extract the data from all the stations and plot them out: 
+In order to fill the gap, I merge the data of [National River Flow Archive] (https://nrfa.ceh.ac.uk/data/search), which has a Broadlands GS station that locates at the upstream of Testwood GS, Conagar Bridge GS and Test Back GS stations(look at the hydrology map to gain a better understanding).
+Given the proximity between the stations, it is possible to estimate the sum of the stations with missing data using the readings of Broadlands GS station, which is a system identification task. To validate my idea, I extract the data from all the stations and first plotted them to compare: 
 
-![Broadlands Vs Sum]()
+![Broadlands Vs Sum](https://github.com/JZhou3083/SouthernWater_Riverflow_Forcasting/blob/main/plots/Broadlands%20Vs%20Sum_of_Three.jpeg?raw=true)
+
+Then I also compute the Scatter Index and the coefficient of determination R2-score between the two series (code can be found from *EDA.py*) and found that for the existing data, the SI and R2-score are around 0.1 and 0.91 respectively. This is an unexpected good approximation. The equations of SI: 
+<img src="https://latex.codecogs.com/svg.image?SI&space;=&space;\frac{RMSE}{\overline{X}}=\frac{\sqrt{\frac{\sum_{x_i}^{N}(x_i-\hat{x_i})^2}{N}}}{\frac{\sum_{x_i}^{N}x_i}{N}}" title="https://latex.codecogs.com/svg.image?SI = \frac{RMSE}{\overline{X}}=\frac{\sqrt{\frac{\sum_{x_i}^{N}(x_i-\hat{x_i})^2}{N}}}{\frac{\sum_{x_i}^{N}x_i}{N}}" />
+
+and R2-score: 
+<img src="https://latex.codecogs.com/svg.image?R^{2}&space;=&space;1-\frac{RSS}{TSS}\\&space;" title="https://latex.codecogs.com/svg.image?R^{2} = 1-\frac{RSS}{TSS}\\ " />
+where RSS is the sum of squares of residuals, TSS is the total sum of squares. To sumarize, the closer R2-score is to 1 and the SI is to 0, the better the estimation it is. 
+
 
 
 [//]: # (## Objectives)
