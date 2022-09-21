@@ -9,6 +9,18 @@ from statistics import mean
 from sklearn.metrics import r2_score,mean_squared_error
 data_path = os.path.dirname(os.path.realpath(__file__))+"/data"
 plot_path = os.path.dirname(os.path.realpath(__file__))+"/plots"
+def crosscorr(datax, datay, lag=0):
+    """ Lag-N cross correlation.
+    Parameters
+    ----------
+    lag : int, default 0
+    datax, datay : pandas.Series objects of equal length
+
+    Returns
+    ----------
+    crosscorr : float
+    """
+    return datax.corr(datay.shift(lag))
 
 # river flow at broadlands(data source: https://nrfa.ceh.ac.uk/)
 broadlands = pd.read_csv(os.path.join(data_path,"broadlands.csv"))[19:]
@@ -66,15 +78,21 @@ result.to_csv(f"{data_path}/result.csv", index=False)
 # plt.savefig(f"{plot_path}/flow.png")
 
 
-f, axarr = plt.subplots(1,2)
-f.suptitle('Broadlands GS Vs Conagar+Testwood+M27 GSs')
-r.plot(ax=axarr[0],y=['sum','broadlands'],x_compat=True)
-axarr[0].set_ylabel("Daily mean(m3/sec)")
-axarr[1].scatter(r['broadlands'],r['sum'])
-axarr[1].set_xlabel("Broadlands GS")
-axarr[1].set_ylabel("Sum ")
-axarr[1].text(10, 25, '$R2 = 0.92$', fontsize = 10)
-plt.savefig(f"{plot_path}/compare.png")
+# f, axarr = plt.subplots(1,2)
+# f.suptitle('Broadlands GS Vs Conagar+Testwood+M27 GSs')
+# r.plot(ax=axarr[0],y=['sum','broadlands'],x_compat=True)
+# axarr[0].set_ylabel("Daily mean(m3/sec)")
+# axarr[1].scatter(r['broadlands'],r['sum'])
+# axarr[1].set_xlabel("Broadlands GS")
+# axarr[1].set_ylabel("Sum ")
+# axarr[1].text(10, 25, '$R2 = 0.92$', fontsize = 10)
+# plt.savefig(f"{plot_path}/compare.png")
+# plt.show()
+
+cov = [crosscorr(r['sum'], r['broadlands'], lag=i) for i in range(-7,7)]
+plt.xlabel("days")
+plt.title("correlation")
+plt.stem(range(-7,7),cov)
+plt.ylim(0,1)
+plt.savefig(f"{plot_path}/cor.png")
 plt.show()
-
-
