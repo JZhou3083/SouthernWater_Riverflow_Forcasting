@@ -1,7 +1,6 @@
 # SouthernWater_Riverflow_Forecasting
 ## Introduction
-Hands off Flow (HOF) if a measurement of the river flow that triggers warning of when water supply company may be breaching their licence condition for water abstraction on the river, 
-for the preservation of plants and wildlife. In the past eight months, Southampton has experienced the driest months in 131 years due to an extreme shortage of rainfall. The below graph, from the website of Southern Water,
+Hands off Flow (HOF) is a measurement of the river flow that triggers warning of when water supply company may be breaching their licence condition for water abstraction on the river for the preservation of plants and wildlife. In the past eight months, Southampton has experienced the driest months in 131 years due to an extreme shortage of rainfall. The below graph, from the website of Southern Water,
 shows the recent flow data of River Test, one of the two major river supplying water consuming of Southampton during 2022: 
 
 ![River Test flow graph](https://www.southernwater.co.uk/media/7398/testriverflowmld.jpg)
@@ -18,23 +17,27 @@ on the river flow. The main objectives of the project include:
 
 ## Data preparation
 ### Flow data
-Collecting the data is a time-consuming task so far, as hydrology data often suffers discontinuity, and I aim to collect 20 years of data.
-According to [the draught permit application](https://www.southernwater.co.uk/media/7278/11-description_of_the_proposal-1.pdf) by Southern Water(section 2.3.3), the HOF of River Test is measured by summing the readings of the following gauge stations: 
+Collecting the data is a time-consuming task so far, as hydrology data often suffers discontinuity whereas I aim to collect 20 years of data for modelling.
+The schematic of the hydrology of the River Test downstream of Romsey, adopted from Environment Agency in 2011 from Environment Agency: 
+
+![Hydrology map of River Test gauge stations](https://github.com/JZhou3083/SouthernWater_Riverflow_Forcasting/blob/main/plots/Hydrology%20map.jpg?raw=true)
+
+According to [the draught permit application](https://www.southernwater.co.uk/media/7278/11-description_of_the_proposal-1.pdf) by Southern Water(section 2.3.3), however, Testwood Bridge GS does not exist. 
+the HOF of River Test is therefore, measured by summing the readings of the following gauge stations: 
 1. River Great Test at Testwood
 2. River Blackwater at Ower
 3. Broadlands Fish Carrier at M27 TV1
 4. River Little test at Conagar Bridge
 
-The schematic of the hydrology of the River Test downstream of Romsey, adopted from Environment Agency in 2011, can be found from Figure 2 of the application: 
-
-![Hydrology map of River Test gauge stations](https://github.com/JZhou3083/SouthernWater_Riverflow_Forcasting/blob/main/plots/Hydrology%20map.jpg?raw=true)
-
-The fact that HOF calculation is using Testwood GS combined with Ower GS station over Testwood Bridge GS is because Testwood Bridge GS does not exist yet. The interfacing module to Environment Agency 
-database is class __ImportFromEA__ in __EnvironAgency.py__. However, the Testwood GS station of EA has a severe data missing, only containing data from Apr 2018 until Aug 2021 and in low quality (unchecked estimation). 
-In order to fill the gap, I merge the data of [National River Flow Archive] (https://nrfa.ceh.ac.uk/data/search), which has a Broadlands GS station that locates at the upstream of Testwood GS, Conagar Bridge GS and Test Back GS stations(look at the hydrology map to gain a better understanding).
+The interfacing module to Environment Agency database is class __ImportFromEA__ in __EnvironAgency.py__. However, the Testwood GS station of EA has a severe data missing issue, with data from Apr 2018- Aug 2021 and in low quality (unchecked estimation). 
+Filling missing values is very important because rejecting data can significantly decrease the dataset size and forecasting reliability. The more we have data of quality, the better.
+To fill the gap, I impute it with the data from [National River Flow Archive] (https://nrfa.ceh.ac.uk/data/search), which has a Broadlands GS station that locates at the upstream of Testwood GS, Conagar Bridge GS and Test Back GS stations(look at the hydrology map to gain a better understanding).
 Given the proximity between the stations, it is possible to estimate the sum of the stations with missing data using the readings of Broadlands GS station, which is a system identification task. To validate my idea, I extract the data from all the stations and first plotted them to compare: 
 
+Solarized dark             |  Solarized Ocean
+:-------------------------:|:-------------------------:
 ![Broadlands Vs Sum](https://github.com/JZhou3083/SouthernWater_Riverflow_Forcasting/blob/main/plots/Broadlands%20Vs%20Sum_of_Three.jpeg?raw=true)
+  |  ![hello](https://github.com/JZhou3083/SouthernWater_Riverflow_Forcasting/blob/main/plots/Broadlands%20Vs%20Sum_of_Three.jpeg?raw=true)
 
 Then I also compute the Scatter Index and the coefficient of determination R2-score between the two series (code can be found from *EDA.py*) and found that for the existing data, the SI and R2-score are around 0.1 and 0.91 respectively. This is an unexpected good approximation. The equations of SI: 
 <img src="https://latex.codecogs.com/svg.image?SI&space;=&space;\frac{RMSE}{\overline{X}}=\frac{\sqrt{\frac{\sum_{x_i}^{N}(x_i-\hat{x_i})^2}{N}}}{\frac{\sum_{x_i}^{N}x_i}{N}}" title="https://latex.codecogs.com/svg.image?SI = \frac{RMSE}{\overline{X}}=\frac{\sqrt{\frac{\sum_{x_i}^{N}(x_i-\hat{x_i})^2}{N}}}{\frac{\sum_{x_i}^{N}x_i}{N}}" />

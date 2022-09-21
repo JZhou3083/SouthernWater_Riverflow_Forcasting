@@ -10,7 +10,6 @@ from sklearn.metrics import r2_score,mean_squared_error
 data_path = os.path.dirname(os.path.realpath(__file__))+"/data"
 plot_path = os.path.dirname(os.path.realpath(__file__))+"/plots"
 
-
 # river flow at broadlands(data source: https://nrfa.ceh.ac.uk/)
 broadlands = pd.read_csv(os.path.join(data_path,"broadlands.csv"))[19:]
 broadlands.columns =["date","value","nothing"]
@@ -44,26 +43,28 @@ result['broadlands'] = broadlands_comp['value'].astype(float)
 # System identification: from broadland to the sum of the divisions
 r = result[310:]
 r.fillna(method="ffill",inplace=True)
-r.plot(y=['sum','broadlands'])
 SI = math.sqrt(mean_squared_error(r['sum'],r['broadlands']))/mean(r['sum'])*100
 r2 = r2_score(r['sum'],r['broadlands'])
 print(f"{SI:.2f}%",r2)
-plt.title("Flow at Broadlands Vs Total flow at (Ower+Conagar+Testwood)")
-plt.xlabel("Date(daily)")
-plt.ylabel("Flow rate(m3/sec)")
-plt.savefig(f"{plot_path}/flow.png")
-plt.show()
+
+plt.figure(figsize=(6, 8))
+# r.plot(y=['sum','broadlands'],x_compat=True)
+# plt.xlabel("Date")
+# plt.ylabel("Flow rate(m3/sec)")
+# plt.savefig(f"{plot_path}/flow.png")
+
+
 
 # save the sum as input and broadland flow as output for system identification
 dir_path = os.path.dirname(os.path.realpath(__file__))
 result.to_csv(f"{data_path}/result.csv", index=False)
 
 
-# pred = pd.read_csv(os.path.join(data_path,"pred.csv"))
-
-# print(pred[310:])
-# print(r['sum'])
-# SI = math.sqrt(mean_squared_error(r['sum'],pred[:77]))/mean(r['sum'])*100
-# r2 = r2_score(r['sum'],pred[:77])
-# print(f"{SI:.2f}%",r2)
+#
+plt.scatter(r['broadlands'],r['sum'])
+plt.xlabel("Broadlands GS")
+plt.ylabel("Sum of Conagar,m27 and Testwood GS")
+plt.text(10, 25, '$R2 = 0.92$', fontsize = 18)
+plt.savefig(f"{plot_path}/broadVsum.png")
+plt.show()
 
