@@ -25,19 +25,19 @@
 
 [//]: # ([![Product Name Screen Shot][product-screenshot]]&#40;https://example.com&#41;)
 
-Hands off Flow (HOF) is a measurement of the river flow that triggers warning of when water supply company may be breaching their licence condition for water abstraction on the river for the preservation of plants and wildlife. 
+Hands off Flow (HOF) is a measurement of the river flow that triggers warning of when water supply company may be breaching their licence condition for water abstraction on the river to preserve water resource for plants and wildlife. 
 
 In the past eight months, Southampton has experienced the driest months in 131 years due to an extreme shortage of rainfall. The below graph, from the website of Southern Water,
-shows the recent flow data of River Test, one of main source of water for Southampton: 
+shows the recent flow data of River Test, one of main source of water in Southampton: 
 
 ![River Test flow graph](https://www.southernwater.co.uk/media/7398/testriverflowmld.jpg)
 
-Southern Water, the water supply company, introduced a 'Temporary Use Ban(TUB)' to all customers in Hampshire and the Isle of Wight, restricting the unnecessary water usage such as watering a garden using a hosepipe. 
+In July, Southern Water introduced a 'Temporary Use Ban(TUB)' to all its customers in Hampshire and the Isle of Wight, restricting the unnecessary water usage such as watering a garden using a hosepipe. 
 
-This project, aims to conduct time series analysis on the flow readings of River Test by the gauging stations, and construct a predictive model. The main objectives of the project include:
+This project thereby aims to conduct time series analysis on the flow readings of River Test by the gauging stations, and construct a predictive model. The main objectives of the project include:
 1. Analyse the flow of River Test using gauged data from Southern Water 
-2. Construct a model that predicts river flow from climatic data
-3. Validate the model and automate the data extraction and prediction using Requests library and APIs
+2. Construct a model that predicts river flow from climatic data, external data source will be utilized if needed
+3. Validate the model and automate the data collecting and prediction using APIs
 4. Make an APP for better UI
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -45,7 +45,7 @@ This project, aims to conduct time series analysis on the flow readings of River
 
 <!-- GETTING STARTED -->
 ## Data Preparation
-Collecting the data is a major task, as hydrology data often suffers discontinuity while I aim to collect 20 years of data for modelling.
+Collecting the data is a major task as hydrology data often suffers from discontinuity. The goal of this step is to collect at least 20 years of data for modelling.
 
 ### Flow data
 
@@ -60,11 +60,11 @@ summing the readings of the following gauge stations:
 3. Broadlands Fish Carrier at M27 TV1
 4. River Little test at Conagar Bridge
 
-The interfacing module to Environment Agency database is the class __ImportFromEA__ in __EnvironAgency.py__. However, the Testwood GS station of EA has a severe data missing issue, with data from Apr 2018- Aug 2021 and in low quality (unchecked estimation). 
-Filling missing values is very important because rejecting data can significantly decrease the dataset size and forecasting reliability.
+The interfacing module to Environment Agency database is the class __ImportFromEA__ in __EnvironAgency.py__. However, the Testwood GS station of EA has a severe data missing issue, containing data from Apr 2018- Aug 2021 only and in low quality (unchecked estimation). 
+Filling missing values is essential because rejecting data can significantly decrease the dataset size and forecasting reliability.
 
-To fill the gap, I imputed it with the data from [National River Flow Archive] (https://nrfa.ceh.ac.uk/data/search), which has a Broadlands GS station that locates at the upstream of Testwood GS, Conagar Bridge GS and Test Back GS stations(look at the hydrology map for a clearer idea).
-Given the proximity between the stations, it is possible to achieve the approximation. To validate my idea, I extract the data from all the stations and first plotted them to compare: 
+To fill the gap, I imputed the flow readings of a Broadlands Gauging Station(GS) owned by [National River Flow Archive] (https://nrfa.ceh.ac.uk/data/search), which locates slightly upstream of Conagar Bridge GS and Test Back GS stations(look at the hydrology map for a clearer idea).
+Given the proximity between the stations, it is possible to achieve the approximation. To validate my idea, I extract the data from all the stations: 
 
 Time series            |  Scatter
 :-------------------------:|:-------------------------:
