@@ -47,14 +47,6 @@ SI = math.sqrt(mean_squared_error(r['sum'],r['broadlands']))/mean(r['sum'])*100
 r2 = r2_score(r['sum'],r['broadlands'])
 print(f"{SI:.2f}%",r2)
 
-plt.figure(figsize=(3, 4))
-r.plot(y=['sum','broadlands'],x_compat=True)
-plt.xlabel("Date")
-plt.ylabel("Flow rate(m3/sec)")
-plt.savefig(f"{plot_path}/flow.png")
-
-
-
 # save the sum as input and broadland flow as output for system identification
 dir_path = os.path.dirname(os.path.realpath(__file__))
 result.to_csv(f"{data_path}/result.csv", index=False)
@@ -66,5 +58,23 @@ result.to_csv(f"{data_path}/result.csv", index=False)
 # plt.ylabel("Sum of Conagar,m27 and Testwood GS")
 # plt.text(10, 25, '$R2 = 0.92$', fontsize = 12)
 # plt.savefig(f"{plot_path}/broadVsum.png")
+
+# plt.figure(figsize=(3, 4))
+# r.plot(y=['sum','broadlands'],x_compat=True)
+# plt.xlabel("Date")
+# plt.ylabel("Flow rate(m3/sec)")
+# plt.savefig(f"{plot_path}/flow.png")
+
+
+f, axarr = plt.subplots(1,2)
+f.suptitle('Broadlands GS Vs Conagar+Testwood+M27 GSs')
+r.plot(ax=axarr[0],y=['sum','broadlands'],x_compat=True)
+axarr[0].set_ylabel("Flow rate(m3/sec)")
+axarr[1].scatter(r['broadlands'],r['sum'])
+axarr[1].set_xlabel("Broadlands GS")
+axarr[1].set_ylabel("Sum ")
+axarr[1].text(10, 25, '$R2 = 0.92$', fontsize = 10)
+plt.savefig(f"{plot_path}/compare.png")
 plt.show()
+
 

@@ -66,16 +66,15 @@ Filling missing values is essential because rejecting data can significantly dec
 To fill the gap, I imputed it with the flow readings of a Broadlands Gauging Station(GS) owned by [National River Flow Archive] (https://nrfa.ceh.ac.uk/data/search), which locates slightly upstream of Conagar Bridge GS and Test Back GS stations(look at the hydrology map for a clearer idea).
 Given the proximity between the stations, it is possible to achieve the approximation. To validate my idea, I extract the data from all the stations: 
 
-Time series                         |                                     Scatter
-:----------------------------------:|:------------------------------------------:
-![Broadlands Vs Sum](https://github.com/JZhou3083/SouthernWater_Riverflow_Forcasting/blob/main/plots/flow.png?raw=true)
-  |  ![scatter](https://github.com/JZhou3083/SouthernWater_Riverflow_Forcasting/blob/main/plots/broadVsum.png?raw=true)
-
+![compare](https://github.com/JZhou3083/SouthernWater_Riverflow_Forcasting/blob/main/plots/compare.png?raw=true)
 Then I also compute the Scatter Index and the coefficient of determination R2-score between the two series (code can be found from *EDA.py*) and found that for the existing data, the SI and R2-score are around 0.1 and 0.91 respectively. This is an unexpected good approximation. The equations of SI: 
+
 <img src="https://latex.codecogs.com/svg.image?SI&space;=&space;\frac{RMSE}{\overline{X}}=\frac{\sqrt{\frac{\sum_{x_i}^{N}(x_i-\hat{x_i})^2}{N}}}{\frac{\sum_{x_i}^{N}x_i}{N}}" title="https://latex.codecogs.com/svg.image?SI = \frac{RMSE}{\overline{X}}=\frac{\sqrt{\frac{\sum_{x_i}^{N}(x_i-\hat{x_i})^2}{N}}}{\frac{\sum_{x_i}^{N}x_i}{N}}" class="center"/>
 
 and R2-score: 
+
 <img src="https://latex.codecogs.com/svg.image?R^{2}&space;=&space;1-\frac{RSS}{TSS}\\&space;" title="https://latex.codecogs.com/svg.image?R^{2} = 1-\frac{RSS}{TSS}\\ " class="center"/>
+
 where RSS is the sum of squares of residuals, TSS is the total sum of squares. To sumarize, the closer R2-score is to 1 and the SI is to 0, the better the estimation it is. 
 
 
