@@ -66,8 +66,8 @@ Filling missing values is essential because rejecting data can significantly dec
 To fill the gap, I imputed it with the flow readings of a Broadlands Gauging Station(GS) owned by [National River Flow Archive] (https://nrfa.ceh.ac.uk/data/search), which locates slightly upstream of Conagar Bridge GS and Test Back GS stations(look at the hydrology map for a clearer idea).
 Given the proximity between the stations, it is possible to achieve the approximation. To validate my idea, I extract the data from all the stations: 
 
-Time series            |  Scatter
-:-------------------------:|:-------------------------:
+Time series                         |                                     Scatter
+:----------------------------------:|:------------------------------------------:
 ![Broadlands Vs Sum](https://github.com/JZhou3083/SouthernWater_Riverflow_Forcasting/blob/main/plots/flow.png?raw=true)
   |  ![scatter](https://github.com/JZhou3083/SouthernWater_Riverflow_Forcasting/blob/main/plots/broadVsum.png?raw=true)
 
