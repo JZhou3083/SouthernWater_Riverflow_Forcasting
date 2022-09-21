@@ -31,7 +31,7 @@ The schematic of the hydrology of the River Test downstream of Romsey, adopted f
 
 The fact that HOF calculation is using Testwood GS combined with Ower GS station over Testwood Bridge GS is because Testwood Bridge GS does not exist yet. The interfacing module to Environment Agency 
 database is class __ImportFromEA__ in __EnvironAgency.py__. However, the Testwood GS station of EA has a severe data missing, only containing data from Apr 2018 until Aug 2021 and in low quality (unchecked estimation). 
-In order to fill the gap, I merge the data of [National River Flow Archive] (https://nrfa.ceh.ac.uk/data/search), which has a Broadlands GS station that locates at the upstream of Testwood GS, Conagar Bridge GS and Test Back GS stations(look at the hydrology map to gain a better understanding).
+In order to fill the gap, I merge the data of [National River Flow Archive](https://nrfa.ceh.ac.uk/data/search), which has a Broadlands GS station that locates at the upstream of Testwood GS, Conagar Bridge GS and Test Back GS stations(look at the hydrology map to gain a better understanding).
 Given the proximity between the stations, it is possible to estimate the sum of the stations with missing data using the readings of Broadlands GS station, which is a system identification task. To validate my idea, I extract the data from all the stations and first plotted them to compare: 
 
 ![Broadlands Vs Sum](https://github.com/JZhou3083/SouthernWater_Riverflow_Forcasting/blob/main/plots/Broadlands%20Vs%20Sum_of_Three.jpeg?raw=true)
