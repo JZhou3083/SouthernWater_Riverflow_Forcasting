@@ -50,7 +50,7 @@ This project thereby aims to conduct time series analysis on the flow readings o
 The target of this work is to provide a reusable pipeline for water availability forecasting. It provides also a comparative analysis about different forecasting strategies and models. Every datasets are differents from each other, so each dataset will be treated independantly following a general pipeline. 
 I am aiming for a mid and long term forecasting and do not intend to used inferred outputs for future prediction, therefore excluding the usage of recursive forecasting.  
 
-The general methodology falls into four categories: 
+The general methodology falls into three categories: 
 * data preparation: Sourcing, imputing, cleansing and feature engineering for model feeding. 
 * evaluation strategy: Expanding window cross validation 
 * modeling strategy: Ensemble learning 
@@ -58,9 +58,10 @@ The general methodology falls into four categories:
 
 ### Data collection
 
-Data collection is a difficult task as hydrology and climatic data of EA often suffers from significant discontinuities. The target is to collect at least 20 years of data for modelling, for which I exploited external data sources extensively
+Data collection is a difficult task as climatic data of EA often suffers from significant discontinuities. The target is to collect at least 20 years of data for modelling, for which I exploited external data sources extensively
 if correlation analysis indicated good matching to the data of EA.
- 
+
+#### Daily Mean Flow (m3/s) 
 The schematic of the hydrology of the River Test downstream of Romsey, adopted from Environment Agency in 2011 from Environment Agency(EA): 
 <p align="center">
 <img src="/plots/Hydrology map.jpg"  width="300" height="300" class="center">
