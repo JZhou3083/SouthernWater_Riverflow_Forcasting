@@ -52,7 +52,7 @@ Collecting the data is a major task as hydrology data often suffers from discont
 
 The schematic of the hydrology of the River Test downstream of Romsey, adopted from Environment Agency in 2011 from Environment Agency: 
 <p align="center">
-<img src="/plots/Hydrology%20map.jpg"  width="300" height="300" class="center">
+<img src="/plots/Hydrology map.jpg"  width="300" height="300" class="center">
 </p>
 
 According to [the draught permit application](https://www.southernwater.co.uk/media/7278/11-description_of_the_proposal-1.pdf) by Southern Water(section 2.3.3), Testwood Bridge GS does not exist. Hence, the actual HOF data is obtained by 
@@ -66,7 +66,7 @@ summing the readings of the following gauge stations:
 Filling missing values is essential because rejecting data can significantly decrease the dataset size and forecasting reliability.
 
 To fill the gap, I imputed it with the flow readings of a Broadlands Gauging Station(GS) owned by [National River Flow Archive](https://nrfa.ceh.ac.uk/data/search), which locates slightly upstream of Conagar Bridge GS and Test Back GS stations(look at the hydrology map for a clearer idea).
-Given the proximity between the stations, it is possible to achieve the approximation. To validate my idea, I extract the data from all the stations:
+Given the proximity between the stations, it is possible to achieve the approximation or estimation(a system identification task). To validate my idea, I extract the data from all the stations:
 <p align="center">
 <img src="/plots/compare.png">
 </p>
@@ -88,7 +88,7 @@ Considering there may be delay between the two data, I also ran correlation chec
 </p>
 
 It is found that the greatest correlation lies on the day 0, which means readings between Broadlands GS and the sum of the other three has a negligible delay. 
-
+I also built a transfer model in attempt to further enhance the approximation using system identification toolbox of MATLAB, whereas the model suffered apparent overfitting due to the shortage of training data so I. 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
