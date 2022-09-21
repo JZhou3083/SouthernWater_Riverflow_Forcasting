@@ -48,11 +48,19 @@ This project thereby aims to conduct time series analysis on the flow readings o
 ## Methodlogy
 
 The target of this work is to provide a reusable pipeline for water availability forecasting. It provides also a comparative analysis about different forecasting strategies and models. Every datasets are differents from each other, so each dataset will be treated independantly following a general pipeline. 
-I am aiming for a mid and long term forecasting and do not intend to used inferred outputs for future prediction, therefore excluding the usage of recursive forecasting.   
+I am aiming for a mid and long term forecasting and do not intend to used inferred outputs for future prediction, therefore excluding the usage of recursive forecasting.  
 
-### Flow data Imputation 
+The general methodology falls into four categories: 
+* data preparation: Sourcing, imputing, cleansing and feature engineering for model feeding. 
+* evaluation strategy: Expanding window cross validation 
+* modeling strategy: Ensemble learning 
 
-Collecting the flow data is a difficult task as hydrology data often suffers from discontinuity. The goal of this step is to collect at least 20 years of data for modelling.
+
+### Data collection
+
+Data collection is a difficult task as hydrology and climatic data of EA often suffers from significant discontinuities. The target is to collect at least 20 years of data for modelling, for which I exploited external data sources extensively
+if correlation analysis indicated good matching to the data of EA.
+ 
 The schematic of the hydrology of the River Test downstream of Romsey, adopted from Environment Agency in 2011 from Environment Agency(EA): 
 <p align="center">
 <img src="/plots/Hydrology map.jpg"  width="300" height="300" class="center">
@@ -65,11 +73,11 @@ summing the readings of the following gauge stations:
 3. Broadlands Fish Carrier at M27 TV1
 4. River Little test at Conagar Bridge
 
-(The interfacing module to Environment Agency database is the class __ImportFromEA__ in __EnvironAgency.py__.) However, the Testwood GS station of EA has a severe data missing issue, containing data from Apr 2018- Aug 2021 only and in low quality (unchecked estimation). 
+(The interfacing module to Environment Agency database is the class __ImportFromEA__ in __EnvironAgency.py__). However, the Testwood GS station of EA has a severe data missing issue, containing data from Apr 2018- Aug 2021 only and in low quality (unchecked estimation). 
 Filling missing values is essential because rejecting data can significantly decrease the dataset size and forecasting reliability.
 
-To fill the gap, I imputed it with the flow readings of a Broadlands Gauging Station(GS) owned by [National River Flow Archive](https://nrfa.ceh.ac.uk/data/search)(NRFA), which locates slightly upstream of Conagar Bridge GS and Test Back GS stations(look at the hydrology map for a clearer idea).
-Given the proximity between the stations, it is possible to achieve the approximation or estimation(a system identification task). To validate my idea, I extract the data from all the stations:
+To fill the gap, I imputed it with the flow readings of a Broadlands Gauging Station(GS) locating at slightly upstream of Conagar Bridge GS and Test Back GS stations(look at the hydrology map for a clearer idea), from National River Flow Archive(https://nrfa.ceh.ac.uk/data/search)([NRFA](https://nrfa.ceh.ac.uk/data/search)).
+Given the proximity, it is possible to achieve the approximation or estimation(a system identification task). To validate my idea, I extract the data from all the stations:
 <p align="center">
 <img src="/plots/compare.png">
 </p>
@@ -91,13 +99,13 @@ Considering there may be delay between the two data, I also ran correlation chec
 </p>
 
 It is found that the greatest correlation lies on the day 0, which means readings between Broadlands GS and the sum of the other three has a negligible delay. 
-I also built a transfer model in attempt to further enhance the approximation using system identification toolbox of MATLAB, whereas the model had overfit due to the shortage of training data. 
+I also built a transfer model(*data/tfModel.mat*) using system identification toolbox of MATLAB to achieve closer approximation, whereas the model overfits due to the shortage of training data. 
 The output data of the model is therefore:
 1. Daily flow mean at Broadlands GS by EA
 2. Daily flow mean from Ower GS by NRFA.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
+### Precipitation & Temperature  
 
 <!-- ROADMAP -->
 ## Roadmap

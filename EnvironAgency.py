@@ -12,7 +12,6 @@ class ImportFromEA:
         weblink = 'http://environment.data.gov.uk/hydrology'
         station_id = station_ids[station]
         url = f"{weblink}/data/readings.json?station.wiskiID={station_id}&observationType=Qualified"
-        print(url)
         r = requests.get(url,timeout = timeout)
         if r.status_code != 200:
             log.error("Data fetching failed!")
