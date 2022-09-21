@@ -67,6 +67,7 @@ To fill the gap, I imputed it with the flow readings of a Broadlands Gauging Sta
 Given the proximity between the stations, it is possible to achieve the approximation. To validate my idea, I extract the data from all the stations: 
 
 ![compare](https://github.com/JZhou3083/SouthernWater_Riverflow_Forcasting/blob/main/plots/compare.png?raw=true)
+
 Then I also compute the Scatter Index and the coefficient of determination R2-score between the two series (code can be found from *EDA.py*) and found that for the existing data, the SI and R2-score are around 0.1 and 0.91 respectively. This is an unexpected good approximation. The equations of SI: 
 
 <img src="https://latex.codecogs.com/svg.image?SI&space;=&space;\frac{RMSE}{\overline{X}}=\frac{\sqrt{\frac{\sum_{x_i}^{N}(x_i-\hat{x_i})^2}{N}}}{\frac{\sum_{x_i}^{N}x_i}{N}}" title="https://latex.codecogs.com/svg.image?SI = \frac{RMSE}{\overline{X}}=\frac{\sqrt{\frac{\sum_{x_i}^{N}(x_i-\hat{x_i})^2}{N}}}{\frac{\sum_{x_i}^{N}x_i}{N}}" class="center"/>
