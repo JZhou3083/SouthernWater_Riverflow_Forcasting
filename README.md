@@ -60,10 +60,10 @@ summing the readings of the following gauge stations:
 3. Broadlands Fish Carrier at M27 TV1
 4. River Little test at Conagar Bridge
 
-The interfacing module to Environment Agency database is the class __ImportFromEA__ in __EnvironAgency.py__. However, the Testwood GS station of EA has a severe data missing issue, containing data from Apr 2018- Aug 2021 only and in low quality (unchecked estimation). 
+(The interfacing module to Environment Agency database is the class __ImportFromEA__ in __EnvironAgency.py__.) However, the Testwood GS station of EA has a severe data missing issue, containing data from Apr 2018- Aug 2021 only and in low quality (unchecked estimation). 
 Filling missing values is essential because rejecting data can significantly decrease the dataset size and forecasting reliability.
 
-To fill the gap, I imputed the flow readings of a Broadlands Gauging Station(GS) owned by [National River Flow Archive] (https://nrfa.ceh.ac.uk/data/search), which locates slightly upstream of Conagar Bridge GS and Test Back GS stations(look at the hydrology map for a clearer idea).
+To fill the gap, I imputed it with the flow readings of a Broadlands Gauging Station(GS) owned by [National River Flow Archive] (https://nrfa.ceh.ac.uk/data/search), which locates slightly upstream of Conagar Bridge GS and Test Back GS stations(look at the hydrology map for a clearer idea).
 Given the proximity between the stations, it is possible to achieve the approximation. To validate my idea, I extract the data from all the stations: 
 
 Time series            |  Scatter

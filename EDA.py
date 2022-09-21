@@ -47,11 +47,11 @@ SI = math.sqrt(mean_squared_error(r['sum'],r['broadlands']))/mean(r['sum'])*100
 r2 = r2_score(r['sum'],r['broadlands'])
 print(f"{SI:.2f}%",r2)
 
-plt.figure(figsize=(6, 8))
-# r.plot(y=['sum','broadlands'],x_compat=True)
-# plt.xlabel("Date")
-# plt.ylabel("Flow rate(m3/sec)")
-# plt.savefig(f"{plot_path}/flow.png")
+plt.figure(figsize=(3, 4))
+r.plot(y=['sum','broadlands'],x_compat=True)
+plt.xlabel("Date")
+plt.ylabel("Flow rate(m3/sec)")
+plt.savefig(f"{plot_path}/flow.png")
 
 
 
@@ -61,10 +61,10 @@ result.to_csv(f"{data_path}/result.csv", index=False)
 
 
 #
-plt.scatter(r['broadlands'],r['sum'])
-plt.xlabel("Broadlands GS")
-plt.ylabel("Sum of Conagar,m27 and Testwood GS")
-plt.text(10, 25, '$R2 = 0.92$', fontsize = 18)
-plt.savefig(f"{plot_path}/broadVsum.png")
+# plt.scatter(r['broadlands'],r['sum'])
+# plt.xlabel("Broadlands GS")
+# plt.ylabel("Sum of Conagar,m27 and Testwood GS")
+# plt.text(10, 25, '$R2 = 0.92$', fontsize = 12)
+# plt.savefig(f"{plot_path}/broadVsum.png")
 plt.show()
 
