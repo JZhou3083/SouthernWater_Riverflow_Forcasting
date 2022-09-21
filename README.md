@@ -29,8 +29,9 @@ Hands off Flow (HOF) is a measurement of the river flow that triggers warning of
 
 In the past eight months, Southampton has experienced the driest months in 131 years due to an extreme shortage of rainfall. The below graph, from the website of Southern Water,
 shows the recent flow data of River Test, one of main source of water in Southampton: 
-
+<p align="center">
 ![River Test flow graph](https://www.southernwater.co.uk/media/7398/testriverflowmld.jpg)
+</p>
 
 In July, Southern Water introduced a 'Temporary Use Ban(TUB)' to all its customers in Hampshire and the Isle of Wight, restricting the unnecessary water usage such as watering a garden using a hosepipe. 
 
@@ -65,17 +66,20 @@ summing the readings of the following gauge stations:
 Filling missing values is essential because rejecting data can significantly decrease the dataset size and forecasting reliability.
 
 To fill the gap, I imputed it with the flow readings of a Broadlands Gauging Station(GS) owned by [National River Flow Archive] (https://nrfa.ceh.ac.uk/data/search), which locates slightly upstream of Conagar Bridge GS and Test Back GS stations(look at the hydrology map for a clearer idea).
-Given the proximity between the stations, it is possible to achieve the approximation. To validate my idea, I extract the data from all the stations: 
-
+Given the proximity between the stations, it is possible to achieve the approximation. To validate my idea, I extract the data from all the stations:
+<p align="center">
 ![compare](https://github.com/JZhou3083/SouthernWater_Riverflow_Forcasting/blob/main/plots/compare.png?raw=true)
+</p>
 
 Then I also compute the Scatter Index and the coefficient of determination R2-score between the two series (code can be found from *EDA.py*) and found that for the existing data, the SI and R2-score are around 0.1 and 0.91 respectively. This is an unexpected good approximation. The equations of SI: 
-
-<img src="https://latex.codecogs.com/svg.image?SI&space;=&space;\frac{RMSE}{\overline{X}}=\frac{\sqrt{\frac{\sum_{x_i}^{N}(x_i-\hat{x_i})^2}{N}}}{\frac{\sum_{x_i}^{N}x_i}{N}}" title="https://latex.codecogs.com/svg.image?SI = \frac{RMSE}{\overline{X}}=\frac{\sqrt{\frac{\sum_{x_i}^{N}(x_i-\hat{x_i})^2}{N}}}{\frac{\sum_{x_i}^{N}x_i}{N}}" class="center"/>
+<p align="center">
+<img src="https://latex.codecogs.com/svg.image?SI&space;=&space;\frac{RMSE}{\overline{X}}=\frac{\sqrt{\frac{\sum_{x_i}^{N}(x_i-\hat{x_i})^2}{N}}}{\frac{\sum_{x_i}^{N}x_i}{N}}" title="https://latex.codecogs.com/svg.image?SI = \frac{RMSE}{\overline{X}}=\frac{\sqrt{\frac{\sum_{x_i}^{N}(x_i-\hat{x_i})^2}{N}}}{\frac{\sum_{x_i}^{N}x_i}{N}}"/>
+</p>
 
 and R2-score: 
-
+<p align="center">
 <img src="https://latex.codecogs.com/svg.image?R^{2}&space;=&space;1-\frac{RSS}{TSS}\\&space;" title="https://latex.codecogs.com/svg.image?R^{2} = 1-\frac{RSS}{TSS}\\ " class="center"/>
+</p>
 
 where RSS is the sum of squares of residuals, TSS is the total sum of squares. To sumarize, the closer R2-score is to 1 and the SI is to 0, the better the estimation it is. 
 
