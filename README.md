@@ -17,7 +17,7 @@ on the river flow. The main objectives of the project include:
 
 ## Data preparation
 ### Flow data
-Collecting the data is a time-consuming task so far, as hydrology data often suffers discontinuity whereas I aim to collect 20 years of data for modelling.
+Collecting the data is a major task, as hydrology data often suffers discontinuity while I aim to collect 20 years of data for modelling.
 The schematic of the hydrology of the River Test downstream of Romsey, adopted from Environment Agency in 2011 from Environment Agency: 
 
 ![Hydrology map of River Test gauge stations](https://github.com/JZhou3083/SouthernWater_Riverflow_Forcasting/blob/main/plots/Hydrology%20map.jpg?raw=true)
