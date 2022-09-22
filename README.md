@@ -30,7 +30,7 @@ Hands off Flow (HOF) is a measurement of the river flow that triggers warning of
 In the past eight months, Southampton has experienced the driest months in 131 years due to an extreme shortage of rainfall. The below graph, from the website of Southern Water,
 shows the recent flow data of River Test, one of main water source in Southampton: 
 <p align="center">
-<img src="/plots/testriverflowmld.jpg">
+<img src="/plots/testriverflowmld.jpg" height="300">
 </p>
 
 In July, Southern Water introduced a 'Temporary Use Ban(TUB)' to all its customers in Hampshire and the Isle of Wight, restricting the unnecessary water usage such as watering a garden using a hosepipe. 
@@ -80,7 +80,7 @@ Filling missing values is essential because rejecting data can significantly dec
 To fill the gap, I imputed it with the flow readings of a Broadlands Gauging Station(GS) locating at slightly upstream of Conagar Bridge GS and Test Back GS stations(look at the hydrology map for a clearer idea), from National River Flow Archive([NRFA](https://nrfa.ceh.ac.uk/data/search)).
 Given the proximity, it is possible to achieve the approximation or estimation(a system identification task). To validate my idea, I extract the data from all the stations:
 <p align="center">
-<img src="/plots/compare.png" height="450">
+<img src="/plots/compare.png" height="300">
 </p>
 
 Then I compute the Scatter Index and the coefficient of determination R2-score between the two series (code can be found from *EDA.py*) and found that for the existing data, the SI and R2-score are around 0.1 and 0.91 respectively. This is an unexpected good approximation. The equations of SI: 
