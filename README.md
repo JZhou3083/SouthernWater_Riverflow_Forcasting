@@ -101,18 +101,18 @@ Considering there may be delay between the two data, I also ran correlation chec
 
 It is found that the greatest correlation lies on the day 0, which means readings between Broadlands GS and the sum of the other three has a negligible delay. 
 I also built a transfer model(*data/tfModel.mat*) using system identification toolbox of MATLAB to achieve closer approximation, whereas the model overfits due to the shortage of training data. 
-The output data of the model is therefore:
-1. Daily flow mean at Broadlands GS by EA
-2. Daily flow mean from Ower GS by NRFA.
+Finally, output data of the model is therefore the sum of:
+1. Daily flow mean gauged at Broadlands GS from EA
+2. Daily flow mean gauged at Ower GS from NRFA
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Precipitation & Temperature  
+Rainfall and temperature data collection is used the same method as flow but in NetCDF4 format. A tutorial on data analysis using Python and NetCDF4 can be found [here](http://fastml.com/predicting-solar-energy-from-weather-forecasts-plus-a-netcdf4-tutorial/).
 
 <!-- ROADMAP -->
 ## Roadmap
 
-- [x] Data collection 
-- [x] Data preprocessing
+- [x] Data preparation
 - [ ] Feature engineering 
 - [ ] Modelling 
 - [ ] Validation 
