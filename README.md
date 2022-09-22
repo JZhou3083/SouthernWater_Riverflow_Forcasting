@@ -77,7 +77,7 @@ summing the readings of the following gauge stations:
 (The interfacing module to Environment Agency database is the class __ImportFromEA__ in __EnvironAgency.py__). However, the Testwood GS station of EA has a severe data missing issue, containing data from Apr 2018- Aug 2021 only and in low quality (unchecked estimation). 
 Filling missing values is essential because rejecting data can significantly decrease the dataset size and forecasting reliability.
 
-To fill the gap, I imputed it with the flow readings of a Broadlands Gauging Station(GS) locating at slightly upstream of Conagar Bridge GS and Test Back GS stations(look at the hydrology map for a clearer idea), from National River Flow Archive(https://nrfa.ceh.ac.uk/data/search)([NRFA](https://nrfa.ceh.ac.uk/data/search)).
+To fill the gap, I imputed it with the flow readings of a Broadlands Gauging Station(GS) locating at slightly upstream of Conagar Bridge GS and Test Back GS stations(look at the hydrology map for a clearer idea), from National River Flow Archive([NRFA](https://nrfa.ceh.ac.uk/data/search)).
 Given the proximity, it is possible to achieve the approximation or estimation(a system identification task). To validate my idea, I extract the data from all the stations:
 <p align="center">
 <img src="/plots/compare.png">
