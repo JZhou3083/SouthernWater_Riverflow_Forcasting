@@ -64,7 +64,7 @@ if correlation analysis indicated good matching to the data of EA.
 #### Daily Mean Flow (m3/s) 
 The schematic of the hydrology of the River Test downstream of Romsey, adopted from Environment Agency in 2011 from Environment Agency(EA): 
 <p align="center">
-<img src="/plots/Hydrology map.jpg"  width="300" height="300" class="center">
+<img src="/plots/hydroMap.jpg"  width="300" height="300" class="center">
 </p>
 
 According to [the draught permit application](https://www.southernwater.co.uk/media/7278/11-description_of_the_proposal-1.pdf) by Southern Water(section 2.3.3), Testwood Bridge GS does not exist. Hence, the actual HOF data is obtained by 
