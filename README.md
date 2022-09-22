@@ -96,7 +96,7 @@ and R2-score:
 where RSS is the sum of squares of residuals, TSS is the total sum of squares. To sumarize, the closer R2-score is to 1 and the SI is to 0, the better the estimation it is. 
 Considering there may be delay between the two data, I also ran correlation check on the two time series: 
 <p align="center">
-<img src="/plots/cor.png" height="450">
+<img src="/plots/cor.png" width="400" height="300">
 </p>
 
 It is found that the greatest correlation lies on the day 0, which means readings between Broadlands GS and the sum of the other three has a negligible delay. 
