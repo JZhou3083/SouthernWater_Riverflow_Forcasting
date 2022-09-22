@@ -140,8 +140,6 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
 
-Use this space to list resources you find helpful and would like to give credit to. I've included a few of my favorites to kick things off!
-
 * [Southernwater](https://www.southernwater.co.uk/)
 * [National River Flow Archive](https://nrfa.ceh.ac.uk/)
 * [A super Learner for water availability forecasting(R)](https://www.kaggle.com/code/vlarmet/a-super-learner-for-water-availability-forecasting)
