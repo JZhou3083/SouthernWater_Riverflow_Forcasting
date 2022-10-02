@@ -110,9 +110,12 @@ Finally, outputs of the model are:
 ### Precipitation
 
 Rainfall data collection and imputation used the same methodology as flow but with the two extra tasks:
-- Locations. It is nearly impossible to forecast daily precipitation with local data only. Therefore 
+- Locations. It is nearly impossible to forecast daily precipitation with local data only. Therefore:
 
-You can explore this map [as its own web page here](/plots/stations.html)
+<iframe>
+  src="https://codepen.io/team/codepen/embed/preview/PNaGbb"
+  style="width:100%; height:300px;"
+</iframe>
 
 
 <!-- ROADMAP -->
