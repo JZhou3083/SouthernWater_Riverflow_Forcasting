@@ -30,7 +30,7 @@ Hands off Flow (HOF) is a measurement of the river flow that triggers warning of
 In the past eight months, Southampton has experienced the driest months in 131 years due to an extreme shortage of rainfall. The below graph, from the website of Southern Water,
 shows the recent flow data of River Test, one of main water source in Southampton: 
 <p align="center">
-<img src="/plots/testriverflowmld.jpg">
+<img src="/plots/testriverflowmld.jpg" height="300">
 </p>
 
 In July, Southern Water introduced a 'Temporary Use Ban(TUB)' to all its customers in Hampshire and the Isle of Wight, restricting the unnecessary water usage such as watering a garden using a hosepipe. 
@@ -56,7 +56,7 @@ The general methodology falls into three categories:
 * modeling strategy: Ensemble learning 
 
 
-### Data collection
+### Data preparation
 
 Data collection is a difficult task as climatic data of EA often suffers from significant discontinuities. The target is to collect at least 20 years of data for modelling, for which I exploited external data sources extensively
 if correlation analysis indicated good matching to the data of EA.
@@ -64,7 +64,7 @@ if correlation analysis indicated good matching to the data of EA.
 #### Daily Mean Flow (m3/s) 
 The schematic of the hydrology of the River Test downstream of Romsey, adopted from Environment Agency in 2011 from Environment Agency(EA): 
 <p align="center">
-<img src="/plots/Hydrology map.jpg"  width="300" height="300" class="center">
+<img src="/plots/hydroMap.jpg"  width="300" height="300" class="center">
 </p>
 
 According to [the draught permit application](https://www.southernwater.co.uk/media/7278/11-description_of_the_proposal-1.pdf) by Southern Water(section 2.3.3), Testwood Bridge GS does not exist. Hence, the actual HOF data is obtained by 
@@ -80,7 +80,7 @@ Filling missing values is essential because rejecting data can significantly dec
 To fill the gap, I imputed it with the flow readings of a Broadlands Gauging Station(GS) locating at slightly upstream of Conagar Bridge GS and Test Back GS stations(look at the hydrology map for a clearer idea), from National River Flow Archive([NRFA](https://nrfa.ceh.ac.uk/data/search)).
 Given the proximity, it is possible to achieve the approximation or estimation(a system identification task). To validate my idea, I extract the data from all the stations:
 <p align="center">
-<img src="/plots/compare.png" height="450">
+<img src="/plots/compare.png" width= "450" height="300">
 </p>
 
 Then I compute the Scatter Index and the coefficient of determination R2-score between the two series (code can be found from *EDA.py*) and found that for the existing data, the SI and R2-score are around 0.1 and 0.91 respectively. This is an unexpected good approximation. The equations of SI: 
@@ -96,18 +96,28 @@ and R2-score:
 where RSS is the sum of squares of residuals, TSS is the total sum of squares. To sumarize, the closer R2-score is to 1 and the SI is to 0, the better the estimation it is. 
 Considering there may be delay between the two data, I also ran correlation check on the two time series: 
 <p align="center">
-<img src="/plots/cor.png" height="450">
+<img src="/plots/cor.png" width="400" height="300">
 </p>
 
 It is found that the greatest correlation lies on the day 0, which means readings between Broadlands GS and the sum of the other three has a negligible delay. 
 I also built a transfer model(*data/tfModel.mat*) using system identification toolbox of MATLAB to achieve closer approximation, whereas the model overfits due to the shortage of training data. 
-Finally, output data of the model is therefore the sum of:
+Finally, outputs of the model are:
 1. Daily flow mean gauged at Broadlands GS from EA
 2. Daily flow mean gauged at Ower GS from NRFA
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-### Precipitation & Temperature  
-Rainfall and temperature data collection is used the same method as flow but in NetCDF4 format. A tutorial on data analysis using Python and NetCDF4 can be found [here](http://fastml.com/predicting-solar-energy-from-weather-forecasts-plus-a-netcdf4-tutorial/).
+### Precipitation
+
+Rainfall data collection and imputation used the same methodology as flow but with the two extra tasks:
+- Locations. It is nearly impossible to forecast daily precipitation with local data only. Therefore, I incorporate 
+as flow but in NetCDF4 format. A tutorial on data analysis using Python and NetCDF4 can be found [here](http://fastml.com/predicting-solar-energy-from-weather-forecasts-plus-a-netcdf4-tutorial/).
+
+
+
+<p><div style ="width:100%;height:350px;boarder:none;text-align:center">
+        <iframe allowtransparency="yes" width= "300" height="300" src ="/plot/stations.html"/>
+    </div></p>
 
 <!-- ROADMAP -->
 ## Roadmap
