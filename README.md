@@ -111,8 +111,7 @@ Finally, outputs of the model are:
 
 Rainfall data collection and imputation used the same methodology as flow but with the two extra tasks:
 - Locations. It is nearly impossible to forecast daily precipitation with local data only. Therefore:
-
-<video width="400" controls><source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">你的浏览器不支持HTML5视频</video>
+<table><thead><tr><th>姓名</th><th>年龄</th><th>住址</th><th>性别</th><th>描述</th></tr></thead><tbody><tr><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td></tr><tr><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td></tr><tr><td>1</td><td>1</td><td></td><td>1</td><td>1</td></tr><tr><td>1</td><td>1</td><td></td><td>1</td><td>1 1</td></tr></tbody></table>
 
 <!-- ROADMAP -->
 ## Roadmap
