@@ -112,11 +112,7 @@ Finally, outputs of the model are:
 Rainfall data collection and imputation used the same methodology as flow but with the two extra tasks:
 - Locations. It is nearly impossible to forecast daily precipitation with local data only. Therefore:
 
-<iframe>
-  src="https://codepen.io/team/codepen/embed/preview/PNaGbb"
-  style="width:100%; height:300px;"
-</iframe>
-
+{google_map}Sunset Boulevard West Hollywood{/google_map}
 
 <!-- ROADMAP -->
 ## Roadmap
