@@ -113,17 +113,277 @@ Rainfall data collection and imputation used the same methodology as flow but wi
 - Locations. It is nearly impossible to forecast daily precipitation with local data only. Therefore, I incorporate 
 as flow but in NetCDF4 format. A tutorial on data analysis using Python and NetCDF4 can be found [here](http://fastml.com/predicting-solar-energy-from-weather-forecasts-plus-a-netcdf4-tutorial/).
 
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/python-visualization/folium/folium/templates/leaflet.awesome.rotate.min.css"/>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_d1ce6e21ca701dc4a08eafe35cda8b6c {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+            </style>
+        
+</head>
+<body>    
+    
+            <div class="folium-map" id="map_d1ce6e21ca701dc4a08eafe35cda8b6c" ></div>
+        
+</body>
+<script>    
+    
+            var map_d1ce6e21ca701dc4a08eafe35cda8b6c = L.map(
+                "map_d1ce6e21ca701dc4a08eafe35cda8b6c",
+                {
+                    center: [51.0, -1.53],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 9,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_887930e4320023aad07664b0a4e1f497 = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_d1ce6e21ca701dc4a08eafe35cda8b6c);
+        
+    
+            var marker_287b41d8022cd59fb093b454b4f26014 = L.marker(
+                [50.95, -1.53],
+                {}
+            ).addTo(map_d1ce6e21ca701dc4a08eafe35cda8b6c);
+        
+    
+            var icon_d5e893bf422081dd1cd0762bfa3a9fc2 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "pink", "prefix": "glyphicon"}
+            );
+            marker_287b41d8022cd59fb093b454b4f26014.setIcon(icon_d5e893bf422081dd1cd0762bfa3a9fc2);
+        
+    
+            marker_287b41d8022cd59fb093b454b4f26014.bindTooltip(
+                `<div>
+                     ('E13590', 50.95)
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_3f33412a5d67a17a431fa334fad84ebb = L.marker(
+                [50.99, -1.49],
+                {}
+            ).addTo(map_d1ce6e21ca701dc4a08eafe35cda8b6c);
+        
+    
+            var icon_32bf8bbcde3d2b5e54c028e933104add = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "pink", "prefix": "glyphicon"}
+            );
+            marker_3f33412a5d67a17a431fa334fad84ebb.setIcon(icon_32bf8bbcde3d2b5e54c028e933104add);
+        
+    
+            marker_3f33412a5d67a17a431fa334fad84ebb.bindTooltip(
+                `<div>
+                     ('E13560', 50.99)
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_c64594fa1bf08f635dad08302eef49e3 = L.marker(
+                [50.88, -1.56],
+                {}
+            ).addTo(map_d1ce6e21ca701dc4a08eafe35cda8b6c);
+        
+    
+            var icon_b6b56f4292b7fca140d0891383932eb1 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "pink", "prefix": "glyphicon"}
+            );
+            marker_c64594fa1bf08f635dad08302eef49e3.setIcon(icon_b6b56f4292b7fca140d0891383932eb1);
+        
+    
+            marker_c64594fa1bf08f635dad08302eef49e3.bindTooltip(
+                `<div>
+                     ('E13600', 50.88)
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_63517c59a90fb423b5492d5857f1ae96 = L.marker(
+                [51.1, -1.56],
+                {}
+            ).addTo(map_d1ce6e21ca701dc4a08eafe35cda8b6c);
+        
+    
+            var icon_5f551b5d0dd58b94f5d6f91a2a89fdb6 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "pink", "prefix": "glyphicon"}
+            );
+            marker_63517c59a90fb423b5492d5857f1ae96.setIcon(icon_5f551b5d0dd58b94f5d6f91a2a89fdb6);
+        
+    
+            marker_63517c59a90fb423b5492d5857f1ae96.bindTooltip(
+                `<div>
+                     ('E13580', 51.1)
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_85dcc6cf02db7b6ab6982673be580001 = L.marker(
+                [51.22, -1.47],
+                {}
+            ).addTo(map_d1ce6e21ca701dc4a08eafe35cda8b6c);
+        
+    
+            var icon_4f9d05610b53945547eba0580a87ffe8 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "pink", "prefix": "glyphicon"}
+            );
+            marker_85dcc6cf02db7b6ab6982673be580001.setIcon(icon_4f9d05610b53945547eba0580a87ffe8);
+        
+    
+            marker_85dcc6cf02db7b6ab6982673be580001.bindTooltip(
+                `<div>
+                     ('E13980', 51.22)
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_c7a407783f8c979f3b8b9b93753e051d = L.marker(
+                [51.25, -1.26],
+                {}
+            ).addTo(map_d1ce6e21ca701dc4a08eafe35cda8b6c);
+        
+    
+            var icon_f35774d35e6a510ddeda5207559d43ff = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "pink", "prefix": "glyphicon"}
+            );
+            marker_c7a407783f8c979f3b8b9b93753e051d.setIcon(icon_f35774d35e6a510ddeda5207559d43ff);
+        
+    
+            marker_c7a407783f8c979f3b8b9b93753e051d.bindTooltip(
+                `<div>
+                     ('E11480', 51.25)
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_0c7141195ad3dd05963d93faed129cf5 = L.marker(
+                [51.25, -1.26],
+                {}
+            ).addTo(map_d1ce6e21ca701dc4a08eafe35cda8b6c);
+        
+    
+            var icon_f8ac0b82f914a8f5c8cd18255ca3abc2 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "pink", "prefix": "glyphicon"}
+            );
+            marker_0c7141195ad3dd05963d93faed129cf5.setIcon(icon_f8ac0b82f914a8f5c8cd18255ca3abc2);
+        
+    
+            marker_0c7141195ad3dd05963d93faed129cf5.bindTooltip(
+                `<div>
+                     ('E14080', 51.25)
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_b94b0dd74e2221ac85504085046966db = L.marker(
+                [51.22, -1.67],
+                {}
+            ).addTo(map_d1ce6e21ca701dc4a08eafe35cda8b6c);
+        
+    
+            var icon_d0562bf8f0fff2a53d4a5f5869a923ba = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "pink", "prefix": "glyphicon"}
+            );
+            marker_b94b0dd74e2221ac85504085046966db.setIcon(icon_d0562bf8f0fff2a53d4a5f5869a923ba);
+        
+    
+            marker_b94b0dd74e2221ac85504085046966db.bindTooltip(
+                `<div>
+                     ('E43104', 51.22)
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_1e9eb119c924b6604f738dff09beb3f2 = L.marker(
+                [51.16, -1.89],
+                {}
+            ).addTo(map_d1ce6e21ca701dc4a08eafe35cda8b6c);
+        
+    
+            var icon_c9d759da249e372c929e14047697bf1a = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "pink", "prefix": "glyphicon"}
+            );
+            marker_1e9eb119c924b6604f738dff09beb3f2.setIcon(icon_c9d759da249e372c929e14047697bf1a);
+        
+    
+            marker_1e9eb119c924b6604f738dff09beb3f2.bindTooltip(
+                `<div>
+                     ('E43103', 51.16)
+                 </div>`,
+                {"sticky": true}
+            );
+        
+    
+            var marker_35f247d43f31b67f4ca4c81514576e19 = L.marker(
+                [50.97, -1.92],
+                {}
+            ).addTo(map_d1ce6e21ca701dc4a08eafe35cda8b6c);
+        
+    
+            var icon_481c26120acd2d02759670be6a02a902 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "info-sign", "iconColor": "white", "markerColor": "pink", "prefix": "glyphicon"}
+            );
+            marker_35f247d43f31b67f4ca4c81514576e19.setIcon(icon_481c26120acd2d02759670be6a02a902);
+        
+    
+            marker_35f247d43f31b67f4ca4c81514576e19.bindTooltip(
+                `<div>
+                     ('340767', 50.97)
+                 </div>`,
+                {"sticky": true}
+            );
+        
+</script>
 
 
-<p><div style ="width:100%;height:350px;boarder:none;text-align:center">
-        <iframe allowtransparency="yes" width= "300" height="300" src ="/plot/stations.html"/>
-    </div></p>
 
 <!-- ROADMAP -->
 ## Roadmap
 
 - [x] Data preparation
-- [ ] Feature engineering 
+- [ ] Feature engineering  
 - [ ] Modelling 
 - [ ] Validation 
 - [ ] APP 
