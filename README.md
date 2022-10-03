@@ -112,6 +112,10 @@ Finally, outputs of the model are:
 Rainfall data collection and imputation used the same methodology as flow but with the two extra tasks:
 - Locations. It is assumed that rainfall and temperature at the upstream has impact on the river flow. The sampling point of the rainfall and temperature observations were chosen according to the collecting stations locaitons 
 of EA but with interpolation, although high correlation of the locations is expected. Therefore, PCA will be conducted to in the data preprocessing. 
+<p align="center">
+<img src="/plots/samplePoints.jpg" width="400" height="300">
+</p>
+
 - Interpolation and extraction. The dataset I used was the [HadUK-Grid](https://data.ceda.ac.uk/badc/ukmo-hadobs/data/insitu/MOHC/HadOBS/HadUK-Grid/v1.1.0.0/5km) at the resolution of 5km national grid referenced data, in the netCDF format. 
 The interface that merge netCDF files and extract data of interested coordinates is *merge_nc_files.py*. 
 
