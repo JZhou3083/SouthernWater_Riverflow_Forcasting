@@ -110,8 +110,10 @@ Finally, outputs of the model are:
 ### Precipitation
 
 Rainfall data collection and imputation used the same methodology as flow but with the two extra tasks:
-- Locations. It is nearly impossible to forecast daily precipitation with local data only. Therefore:
-<table><thead><tr><th>姓名</th><th>年龄</th><th>住址</th><th>性别</th><th>描述</th></tr></thead><tbody><tr><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td></tr><tr><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td></tr><tr><td>1</td><td>1</td><td></td><td>1</td><td>1</td></tr><tr><td>1</td><td>1</td><td></td><td>1</td><td>1 1</td></tr></tbody></table>
+- Locations. It is assumed that rainfall and temperature at the upstream has impact on the river flow. The sampling point of the rainfall and temperature observations were chosen according to the collecting stations locaitons 
+of EA but with interpolation, although high correlation of the locations is expected. Therefore, PCA will be conducted to in the data preprocessing. 
+- Interpolation and extraction. The dataset I used was the [HadUK-Grid](https://data.ceda.ac.uk/badc/ukmo-hadobs/data/insitu/MOHC/HadOBS/HadUK-Grid/v1.1.0.0/5km) at the resolution of 5km national grid referenced data, in the netCDF format. 
+The interface that merge netCDF files and extract data of interested coordinates is *merge_nc_files.py*. 
 
 <!-- ROADMAP -->
 ## Roadmap
