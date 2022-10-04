@@ -121,8 +121,8 @@ The code that merges netCDF files and extracts data at the interested coordinate
 
 | Date       | feature1 | feature2     | ...      | flow_BL     | flow_Ower     |
 |:-----------|    :----:|         ---: |          ---: |          ---: |          ---: |
-| 1980/1/1   | ***       | ***   | ***   | ***   | ***   |
-| ...        | ***       | ***   | ***   | ***   | ***   |
+| 1980/01/01 | ***       | ***   | ***   | ***   | ***   |
+| ..../../.. | ***       | ***   | ***   | ***   | ***   |
 | 2021/12/31 | ***       | ***   | ***   | ***   | ***   |
 
 <!-- ROADMAP -->
