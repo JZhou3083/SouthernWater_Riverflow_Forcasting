@@ -10,7 +10,8 @@ from sklearn.ensemble import RandomForestRegressor
 dir_path = os.path.dirname(os.path.realpath(__file__))
 if __name__ =='__main__':
     df = pd.read_csv(f"{dir_path}/data/data_v2.csv")
-    print(df.columns)
+    df['date'] = pd.to_datetime(df['date'], format='%Y/%m/%d')
+    print(df.head())
 
     # # Feature selection(data_v2.csv is after selection)
     # f = plt.figure(figsize=(19, 15))
@@ -26,10 +27,12 @@ if __name__ =='__main__':
     # plt.show()
 
     # Data denoise
-    f = plt.figure(figsize=(19, 15))
-    for_plot = df[:1000]
-    for_plot.plot(x='date',y='rainfall_Marborough')
-    plt.show()
+    # f = plt.figure(figsize=(19, 15))
+    # for_plot = df[:60]
+    # for_plot['rain_M_filtered'] =  for_plot['rainfall_Marborough'].ewm(alpha=0.9).mean()
+    # for_plot.plot(x='date',y=['rainfall_Marborough',"rain_M_filtered"])
+    #
+    # plt.show()
 
 
 

@@ -128,23 +128,15 @@ The code that merges netCDF files and extracts data at the interested coordinate
 
 </div>
 
-
-### Feature Engineer 
-
-#### Feature selection
-
 As I assumed there are linear relations between river flow and temperature and rainfall, I checked the pearson correlation between features and the target variables: 
 <p align="center">
 <img src="/plots/Cor_matrix.jpg" width="400" height="300">
 </p>
 
-I found that temperatures of all locations are highly correlated therefore I kept only the maximum and minimum temperature at Andover. Also, I noticed that temperature has more significant influence on river flow of Broadland than regional rainfall while in Ower it is the opposite way. 
-Now I devide
+I found that temperatures of all locations are highly correlated therefore I kept only the maximum and minimum temperature at Andover. Also, I noticed that temperature has more significant influence on river flow of Broadland than regional rainfall while in Ower it is the opposite way.
+Then I applied an Exponential window average on the features to smooth and denoise, which was found to be very effective on the model improvement later:
 
-#### Denoising 
 
-The dataset does not contain Bull values therefore no need for filling now. However, I applied an Exponential window average on the features to smooth and denoise, which was found very effective on the model improvement later: 
-Now that I had data of 1980-2021, I split the data of 1980-2014 as training data and the rest as testing data. Any modelling was conducted on the training set. 
 
 
 <!-- ROADMAP -->
