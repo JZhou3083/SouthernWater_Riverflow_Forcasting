@@ -110,7 +110,7 @@ Finally, outputs of the model are:
 ### Precipitation & Temperature
 
 Rainfall data collection and imputation used the same methodology as flow but with the two extra tasks:
-- Locations. It is assumed that rainfall and temperature of proximal coordinates(below 10 km it is around 90%) have high correlations, therefore I use locations at least  10 km from each other. The coordinates of the data collection points start from Ashe, where 
+- Locations. It is assumed that rainfall and temperature of proximal coordinates have high correlations(below 10 km it is around 90%), therefore I use locations at least  10 km from each other. The coordinates of the data collection points start from Ashe, where 
 River Test rises untill HF measuring point at Southampton. A list of the locations is saved in */data/stations.csv*: 
 <p align="center">
 <img src="/plots/samplePoints.jpg" width="400" height="300">
@@ -120,13 +120,32 @@ River Test rises untill HF measuring point at Southampton. A list of the locatio
 The code that merges netCDF files and extracts data at the interested coordinates is *merge_nc_files.py*. And the data set I produced is in the format:
 <div align="center">
 
-| Date         | feature1 |    feature2 | ...      | flow_BL     | flow_Ower     |
-|:-------------|    :----:|    :----:|    :----:|    :----:|     :----: |
-| 1980/01/01   | ***       |         *** | ***   | ***   | ***   |
-| Year/mth/day | ***       |         *** | ***   | ***   | ***   |
-| 2021/12/31   | ***       |         *** | ***   | ***   | ***   |
+| Date         | rainfall1 | rainfall2 | ...      | flow_BL     | flow_Ower     |
+|:-------------|:---------:|:---------:|    :----:|    :----:|     :----: |
+| 1980/01/01   |    ***    |    ***    | ***   | ***   | ***   |
+| Year/mth/day |    ***    |    ***    | ***   | ***   | ***   |
+| 2021/12/31   |    ***    |    ***    | ***   | ***   | ***   |
 
 </div>
+
+
+### Feature Engineer 
+
+#### Feature selection
+
+As I assumed there are linear relations between river flow and temperature and rainfall, I checked the pearson correlation between features and the target variables: 
+<p align="center">
+<img src="/plots/Cor_matrix.jpg" width="400" height="300">
+</p>
+
+I found that temperatures of all locations are highly correlated therefore I kept only the maximum and minimum temperature at Andover. Also, I noticed that temperature has more significant influence on river flow of Broadland than regional rainfall while in Ower it is the opposite way. 
+Now I devide
+
+#### Denoising 
+
+The dataset does not contain Bull values therefore no need for filling now. However, I applied an Exponential window average on the features to smooth and denoise, which was found very effective on the model improvement later: 
+Now that I had data of 1980-2021, I split the data of 1980-2014 as training data and the rest as testing data. Any modelling was conducted on the training set. 
+
 
 <!-- ROADMAP -->
 ## Roadmap
