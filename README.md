@@ -120,11 +120,11 @@ River Test rises untill HF measuring point at Southampton. A list of the locatio
 The code that merges netCDF files and extracts data at the interested coordinates is *merge_nc_files.py*. And the data set I produced is in the format:
 <div align="center">
 
-| Date         | feature1 | feature2     | ...      | flow_BL     | flow_Ower     |
-|:-------------|    :----:|         ---: |          ---: |          ---: |          ---: |
-| 1980/01/01   | ***       | ***   | ***   | ***   | ***   |
-| Year/mth/day | ***       | ***   | ***   | ***   | ***   |
-| 2021/12/31   | ***       | ***   | ***   | ***   | ***   |
+| Date         | feature1 |    feature2 | ...      | flow_BL     | flow_Ower     |
+|:-------------|    :----:|    :----:|    :----:|    :----:|     :----: |
+| 1980/01/01   | ***       |         *** | ***   | ***   | ***   |
+| Year/mth/day | ***       |         *** | ***   | ***   | ***   |
+| 2021/12/31   | ***       |         *** | ***   | ***   | ***   |
 
 </div>
 
