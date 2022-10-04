@@ -5,8 +5,9 @@ import numpy as np
 import os
 from calendar import monthrange
 file_path = os.path.dirname(os.path.realpath(__file__))
+stations_lookup = pd.read_csv(f"{file_path}/data/stations.csv")
 
-coordinates = {"London": ((51.507407,-0.12772404))}
+
 
 class mergeFiles:
     """
@@ -34,14 +35,14 @@ class mergeFiles:
         read in data
     """
 
-    def __init__(self, feature="rainfall",cords= [(50.95, -1.53),(50.99, -1.49),(51.10, -1.56),( 51.22, -1.47),(50.97, -1.92)],save_csv=True):
+    def __init__(self, feature="rainfall",stations= stations_lookup[stations_lookup.type=='rain'].name.values.tolist(),save_csv=True):
 
         self.feature = feature
         self.df = None
         self.all_months = []
         self.save_csv = save_csv
         self.data_path =  f"{file_path}/data/CEDA"
-        self.cords = cords
+        self.stations = stations
 
     def createDataFrame(self):
         """
@@ -66,7 +67,7 @@ class mergeFiles:
         date_range = pd.date_range(start=str(mon_start) + '01',
                                    end=str(end_mon) + '31',
                                    freq='D')
-        self.df = pd.DataFrame(0.0, columns=[f"{self.feature}{cord}" for cord in self.cords], index=date_range)
+        self.df = pd.DataFrame(0.0, columns=[f"{self.feature}_{station}" for station in self.stations], index=date_range)
 
     def fillData(self):
 
@@ -90,14 +91,15 @@ class mergeFiles:
             d_range = pd.date_range(start=start,
                             end=end,
                             freq='D')
-            for cord in self.cords:
+            for station in self.stations:
+                cord = (stations_lookup[stations_lookup.name==station].latitude.values, stations_lookup[stations_lookup.name==station].longitude.values)
                 min_index_lat, min_index_lon = self.getclosest_ij(lats, lons, cord)
                 for t_index in np.arange(0, len(d_range)):
-                    print(f'Recording the {self.feature} value at {cord} for: ' + str(d_range[t_index]))
-                    self.df.loc[d_range[t_index]][f"{self.feature}{cord}"] = value[t_index, min_index_lat, min_index_lon]
+                    print(f'Recording the {self.feature} value at {station} for: ' + str(d_range[t_index]))
+                    self.df.loc[d_range[t_index]][f"{self.feature}_{station}"] = value[t_index, min_index_lat, min_index_lon]
             data.close()
         if self.save_csv:
-            self.df.to_csv(f"{self.data_path}/{self.feature}/{self.feature}.csv")
+            self.df.to_csv(f"{self.data_path}/{self.feature}.csv")
         return self.df
 
     def getclosest_ij(self,lats, lons, cords):
@@ -119,6 +121,17 @@ class mergeFiles:
 
 if __name__=='__main__':
 
+    # rain
     rain = mergeFiles(feature="rainfall")
     rain.createDataFrame()
     df=rain.fillData()
+
+    # maximum temperature
+    tasmax = mergeFiles(feature="tasmax",stations=stations_lookup[stations_lookup.type=='temp'].name.values.tolist())
+    tasmax.createDataFrame()
+    df_tasmax = tasmax.fillData()
+
+    # minimum temperature
+    tasmin = mergeFiles(feature="tasmin",stations=stations_lookup[stations_lookup.type=='temp'].name.values.tolist())
+    tasmin.createDataFrame()
+    df_tasmin = tasmin.fillData()

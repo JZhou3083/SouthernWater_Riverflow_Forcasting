@@ -1,9 +1,10 @@
 import requests
 import logging as log
 import json
-from datetime import date
+import pandas as pd
+import os
+dir_path = os.path.dirname(os.path.realpath(__file__))
 station_ids = {"Ower":"151817001", "M27TV1":"151816012","Conagar":"151816005","Testwood":"151816003","Broadlands":"42004"}
-token_noaa = "ISIIcelAilSWTcqyklEkIctSeGEMwPrt"
 class ImportFromEA:
     """This class will get data from environment agency, return in json format"""
     def __init__(self):
@@ -36,17 +37,29 @@ class ImportFromEA:
             data = data["items"]
         return data
 
-    # Get daily precipitation data at unit mm, data source: EA & NOAA
-    def get_rainfall(self,source = "noaa", start_date="2000-01-01", end_date =date.today(), timeout = 10):
-        headers = {'token': 'ISIIcelAilSWTcqyklEkIctSeGEMwPrt'} # authentication token
-        url = "https://www.ncei.noaa.gov/cdo-web/api/v2/locations?locationcategoryid=CITY&limit=1000&&sortfield=name&sortorder=desc"
-        r = requests.get(url, headers= headers, timeout=timeout)
+    def flow_to_csv(self, stationNames= ["Broadlands","Ower"]):
+        """
+        :param save_csv: save the data as csv
+        :return: DataFrame of flow data from all stations
+        """
+        for station in stationNames:
+            data = self.get_flow_from(station)
+            # convert to dataframe
+            df = pd.DataFrame(data)
+            df['date']=pd.to_datetime(df['date'].astype(str), format='%Y/%m/%d')
+            df = df[df.date>='1980/1/1']
+            df = df[['date','value']]
 
-        if r.status_code != 200:
-            log.error("Data fetching failed!")
-        else:
-            print(f"Fetched rainfall stations! ")
+            df.rename(columns={'value':f"flow_{station}"})
+            df.sort_values('date', inplace=True) # Some dataset not sorted
 
-        return r.json()
+            # save the flow
+            df.to_csv(f"{dir_path}/data/flow_{station}.csv", index=False)
+
+
+
+if __name__=='__main__':
+    p = ImportFromEA()
+    p.flow_to_csv()
 
 

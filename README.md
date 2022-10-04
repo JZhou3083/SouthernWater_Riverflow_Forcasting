@@ -107,17 +107,23 @@ Finally, outputs of the model are:
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-### Precipitation
+### Precipitation & Temperature
 
 Rainfall data collection and imputation used the same methodology as flow but with the two extra tasks:
-- Locations. It is assumed that rainfall and temperature at the upstream has impact on the river flow. The sampling point of the rainfall and temperature observations were chosen according to the collecting stations locaitons 
-of EA but with interpolation, although high correlation of the locations is expected. Therefore, PCA will be conducted to in the data preprocessing. 
+- Locations. It is assumed that rainfall and temperature of proximal coordinates(below 10 km it is around 90%) have high correlations, therefore I use locations at least  10 km from each other. The coordinates of the data collection points start from Ashe, where 
+River Test rises untill HF measuring point at Southampton. A list of the locations is saved in */data/stations.csv*: 
 <p align="center">
 <img src="/plots/samplePoints.jpg" width="400" height="300">
 </p>
 
-- Interpolation and extraction. The dataset I used was the [HadUK-Grid](https://data.ceda.ac.uk/badc/ukmo-hadobs/data/insitu/MOHC/HadOBS/HadUK-Grid/v1.1.0.0/5km) at the resolution of 5km national grid referenced data, in the netCDF format. 
-The interface that merge netCDF files and extract data of interested coordinates is *merge_nc_files.py*. 
+- Extraction from netCDF files. The dataset I used was the [HadUK-Grid](https://data.ceda.ac.uk/badc/ukmo-hadobs/data/insitu/MOHC/HadOBS/HadUK-Grid/v1.1.0.0/5km) at the resolution of 5km grid, in the netCDF format. 
+The code that merges netCDF files and extracts data at the interested coordinates is *merge_nc_files.py*. And the data set I produced is in the format:
+
+| Date       | feature1 | feature2     | ...      | flow_BL     | flow_Ower     |
+|:-----------|    :----:|         ---: |          ---: |          ---: |          ---: |
+| 1980/1/1   | ***       | ***   | ***   | ***   | ***   |
+| ...        | ***       | ***   | ***   | ***   | ***   |
+| 2021/12/31 | ***       | ***   | ***   | ***   | ***   |
 
 <!-- ROADMAP -->
 ## Roadmap
