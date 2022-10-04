@@ -118,14 +118,15 @@ River Test rises untill HF measuring point at Southampton. A list of the locatio
 
 - Extraction from netCDF files. The dataset I used was the [HadUK-Grid](https://data.ceda.ac.uk/badc/ukmo-hadobs/data/insitu/MOHC/HadOBS/HadUK-Grid/v1.1.0.0/5km) at the resolution of 5km grid, in the netCDF format. 
 The code that merges netCDF files and extracts data at the interested coordinates is *merge_nc_files.py*. And the data set I produced is in the format:
-<center>
+<div align="center">
 
-| Date       | feature1 | feature2     | ...      | flow_BL     | flow_Ower     |
-|:-----------|    :----:|         ---: |          ---: |          ---: |          ---: |
-| 1980/01/01 | ***       | ***   | ***   | ***   | ***   |
-| ..../../.. | ***       | ***   | ***   | ***   | ***   |
-| 2021/12/31 | ***       | ***   | ***   | ***   | ***   |
-</center>
+| Date         | feature1 | feature2     | ...      | flow_BL     | flow_Ower     |
+|:-------------|    :----:|         ---: |          ---: |          ---: |          ---: |
+| 1980/01/01   | ***       | ***   | ***   | ***   | ***   |
+| Year/mth/day | ***       | ***   | ***   | ***   | ***   |
+| 2021/12/31   | ***       | ***   | ***   | ***   | ***   |
+
+</div>
 
 <!-- ROADMAP -->
 ## Roadmap
