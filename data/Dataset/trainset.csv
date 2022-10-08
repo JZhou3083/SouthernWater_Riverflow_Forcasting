@@ -1,4 +1,4 @@
-﻿date,rainfall_Marborough,rainfall_Andover,rainfall_Bath,rainfall_Ower,rainfall_Quidhampton,rainfall_Salisbury_rain,rainfall_Stockbridge,tasmax_Andover_temp,tasmin_Andover_temp,flow_BL,flow_Ower
+﻿date,rainfall_Marborough,rainfall_Andover,rainfall_Bath,rainfall_Ower,rainfall_Quidhampton,rainfall_Salisbury,rainfall_Stockbridge,tasmax_Andover,tasmin_Andover,flow_Broadlands,flow_Ower
 1980/1/1,0.000328872,0.000362732,0.013192316,7.15E-05,0.000557925,0.000573718,0.000466116,0.444644666,-3.864214835,13.45,1.03
 1980/1/2,0.847044026,0.251293471,1.160641593,0.355688944,1.052218495,0.680204901,0.591661241,3.26175267,-5.863471795,13.01,0.895
 1980/1/3,12.02860708,11.89042594,5.864268729,10.26660735,11.26713805,10.03584808,12.33613589,10.48861382,-5.421298111,13.48,2.42

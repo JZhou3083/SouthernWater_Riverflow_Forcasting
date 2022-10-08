@@ -11,8 +11,7 @@ dir_path = os.path.dirname(os.path.realpath(__file__))
 if __name__ =='__main__':
     df = pd.read_csv(f"{dir_path}/data/data_v2.csv")
     df['date'] = pd.to_datetime(df['date'], format='%Y/%m/%d')
-    print(df.head())
-
+    print(df.columns)
     # # Feature selection(data_v2.csv is after selection)
     # f = plt.figure(figsize=(19, 15))
     # mtrx = df.corr()
@@ -26,13 +25,15 @@ if __name__ =='__main__':
     # sn.heatmap(mtrx, cmap="Blues", annot=True)
     # plt.show()
 
-    # Data denoise
-    # f = plt.figure(figsize=(19, 15))
-    # for_plot = df[:60]
-    # for_plot['rain_M_filtered'] =  for_plot['rainfall_Marborough'].ewm(alpha=0.9).mean()
-    # for_plot.plot(x='date',y=['rainfall_Marborough',"rain_M_filtered"])
-    #
-    # plt.show()
+    # Data denoise (U also can use the individual alphas)
+    # alpha = 0.9
+    # df.iloc[:,1:9]=df.iloc[:,1:9].ewm(alpha= alpha).mean()
+
+
+    # ARMMA modelling to get feature lags example:
+
+
+
 
 
 

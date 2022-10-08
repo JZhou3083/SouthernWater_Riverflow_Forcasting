@@ -56,7 +56,7 @@ The general methodology falls into three categories:
 * modeling strategy: Ensemble learning 
 
 
-### Data preparation
+### Data collection
 
 Data collection is a difficult task as climatic data of EA often suffers from significant discontinuities. The target is to collect at least 20 years of data for modelling, for which I exploited external data sources extensively
 if correlation analysis indicated good matching to the data of EA.
@@ -134,8 +134,18 @@ As I assumed there are linear relations between river flow and temperature and r
 </p>
 
 I found that temperatures of all locations are highly correlated therefore I kept only the maximum and minimum temperature at Andover. Also, I noticed that temperature has more significant influence on river flow of Broadland than regional rainfall while in Ower it is the opposite way.
-Then I applied an Exponential window average on the features to smooth and denoise, which was found to be very effective on the model improvement later:
+Then I applied an Exponential window average with alpha =0.1 on the features to smooth and denoise, which was found to be essential for the model performance later:
 
+### Data preparation 
+
+Now that I had all the data we can get, the next step is to prepare it for supervised learning. There were few adjustments I did 
+- Finding the relevant time lag effect of weather variables on river flow
+- Cyclical encoding to add time related features, i.e. month of the year, week of the month and day of the week
+- Add the pass values of target variables as new features 
+
+#### lagged features
+
+Update: check [Kaggle](https://www.kaggle.com/code/jzhou3083/forecasting-water-availability-in-southampton) for more updates. 
 
 
 
